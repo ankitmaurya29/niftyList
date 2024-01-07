@@ -1,4 +1,4 @@
-import { data } from "./data.js";
+import { data, sortedData } from "./data.js";
 window.onload = function () {
   if (!sessionStorage.getItem("index")) {
     sessionStorage.setItem("index", (-1).toString());
@@ -62,7 +62,7 @@ function setUpList() {
   const list = document.getElementById("list");
   list.innerHTML = "";
   console.log(`size: ${data.length}`);
-  data.forEach((i, index, _) => {
+  sortedData.forEach((i, index, _) => {
     const a = document.createElement("a");
     a.href = i.url;
     a.target = "_top";
@@ -71,16 +71,17 @@ function setUpList() {
 
     list.appendChild(a);
 
-    if (storedIndex == index) {
+    if (data[storedIndex]?.name === i.name) {
       a.classList.add("selected");
-      a.scrollIntoView({ behavior: "smooth", block: "center" });
     }
     a.addEventListener("click", () => {
       document.querySelectorAll(".selected").forEach((item) => {
         item.classList.remove("selected");
       });
       a.classList.add("selected");
-      sessionStorage.setItem("index", index.toString());
+      const targetIndex = data.findIndex((real) => real.name == a.textContent);
+      console.log(`textContent: ${a.textContent}, targetIndex: ${targetIndex}`);
+      sessionStorage.setItem("index", targetIndex.toString());
       setUpButtons();
     });
   });
