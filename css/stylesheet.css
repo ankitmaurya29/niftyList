@@ -45,6 +45,13 @@
   text-align: center;
 }
 
+#previousBtn {
+  margin-right: 5px;
+}
+#nextBtn {
+  flex: 1;
+}
+
 .inline:hover {
   background-color: burlywood;
 }

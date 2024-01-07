@@ -1,10 +1,10 @@
 window.onload = function () {
-  setUpList();
-  setUpButtons();
-  if (sessionStorage.getItem("index") === null) {
+  if (!sessionStorage.getItem("index")) {
     sessionStorage.setItem("index", (-1).toString());
     console.log("restting values");
   }
+  setUpList();
+  setUpButtons();
 };
 
 function setUpButtons() {
@@ -42,7 +42,6 @@ function setUpButtons() {
     navigateAndUpdate(event, true);
   });
   function navigateAndUpdate(event, up) {
-    event.pre;
     if (up) {
       sessionStorage.setItem(
         "index",
