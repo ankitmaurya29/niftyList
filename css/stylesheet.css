@@ -1,0 +1,50 @@
+.list {
+  display: block;
+  background-color: lightblue;
+  height: 30px;
+  margin: 4px 0px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.list:hover {
+  background-color: lightcoral;
+  color: whitesmoke;
+}
+
+.selected {
+  background-color: chocolate;
+  font-weight: bold;
+  color: white;
+}
+
+.backButton,
+.nextButton {
+  width: 30px;
+  height: 30px;
+  justify-items: center;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  top: 10px;
+}
+
+.inline {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 40%;
+  background-color: bisque;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 3vw;
+  text-align: center;
+}
+
+.inline:hover {
+  background-color: burlywood;
+}
