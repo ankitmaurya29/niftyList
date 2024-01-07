@@ -1,3 +1,4 @@
+import { data } from "./data.js";
 window.onload = function () {
   if (!sessionStorage.getItem("index")) {
     sessionStorage.setItem("index", (-1).toString());
@@ -11,8 +12,8 @@ function setUpButtons() {
   let storedIndex = parseInt(sessionStorage.getItem("index"));
   const previousBtn = document.getElementById("previousBtn");
   var backCompanynameDiv = previousBtn.querySelector(".backCompanyname");
-  if (niftyFifty[storedIndex - 1]) {
-    const company = niftyFifty[storedIndex - 1];
+  if (data[storedIndex - 1]) {
+    const company = data[storedIndex - 1];
     previousBtn.href = company.url;
     previousBtn.target = "_top";
     backCompanynameDiv.textContent = company.name;
@@ -28,8 +29,8 @@ function setUpButtons() {
 
   const nextBtn = document.getElementById("nextBtn");
   var nextCompanynameDiv = nextBtn.querySelector(".nextCompanyname");
-  if (niftyFifty[storedIndex + 1]) {
-    const company = niftyFifty[storedIndex + 1];
+  if (data[storedIndex + 1]) {
+    const company = data[storedIndex + 1];
     nextBtn.href = company.url;
     nextBtn.target = "_top";
     nextCompanynameDiv.textContent = company.name;
@@ -45,7 +46,7 @@ function setUpButtons() {
     if (up) {
       sessionStorage.setItem(
         "index",
-        Math.min(niftyFifty.length - 1, storedIndex + 1)
+        Math.min(data.length - 1, storedIndex + 1)
       );
     } else {
       sessionStorage.setItem("index", Math.max(-1, storedIndex - 1));
@@ -60,7 +61,8 @@ function setUpList() {
   var storedIndex = parseInt(sessionStorage.getItem("index"));
   const list = document.getElementById("list");
   list.innerHTML = "";
-  niftyFifty.forEach((i, index, _) => {
+  console.log(`size: ${data.length}`);
+  data.forEach((i, index, _) => {
     const a = document.createElement("a");
     a.href = i.url;
     a.target = "_top";
