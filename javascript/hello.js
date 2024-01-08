@@ -4,6 +4,14 @@ window.onload = function () {
     sessionStorage.setItem("index", (-1).toString());
     console.log("restting values");
   }
+  const previousBtn = document.getElementById("previousBtn");
+  previousBtn.addEventListener("click", (event) => {
+    navigateAndUpdate(event, false);
+  });
+  const nextBtn = document.getElementById("nextBtn");
+  nextBtn.addEventListener("click", (event) => {
+    navigateAndUpdate(event, true);
+  });
   setUpList();
   setUpButtons();
 };
@@ -23,10 +31,6 @@ function setUpButtons() {
     backCompanynameDiv.textContent = "";
   }
 
-  previousBtn.addEventListener("click", (event) => {
-    navigateAndUpdate(event, false);
-  });
-
   const nextBtn = document.getElementById("nextBtn");
   var nextCompanynameDiv = nextBtn.querySelector(".nextCompanyname");
   if (data[storedIndex + 1]) {
@@ -39,24 +43,19 @@ function setUpButtons() {
     nextBtn.setAttribute("disabled", "true");
     nextCompanynameDiv.textContent = "";
   }
-  nextBtn.addEventListener("click", (event) => {
-    navigateAndUpdate(event, true);
-  });
-  function navigateAndUpdate(event, up) {
-    if (up) {
-      sessionStorage.setItem(
-        "index",
-        Math.min(data.length - 1, storedIndex + 1)
-      );
-    } else {
-      sessionStorage.setItem("index", Math.max(-1, storedIndex - 1));
-    }
-    setTimeout(() => {
-      setUpList();
-      setUpButtons();
-    }, 0);
-  }
 }
+function navigateAndUpdate(event, up) {
+  let storedIndex = parseInt(sessionStorage.getItem("index"));
+  if (up) {
+    sessionStorage.setItem("index", Math.min(data.length - 1, storedIndex + 1));
+  } else {
+    sessionStorage.setItem("index", Math.max(-1, storedIndex - 1));
+  }
+
+  setUpList();
+  setUpButtons();
+}
+
 function setUpList() {
   var storedIndex = parseInt(sessionStorage.getItem("index"));
   const list = document.getElementById("list");
@@ -80,6 +79,7 @@ function setUpList() {
       });
       a.classList.add("selected");
       const targetIndex = data.findIndex((real) => real.name == a.textContent);
+
       console.log(`textContent: ${a.textContent}, targetIndex: ${targetIndex}`);
       sessionStorage.setItem("index", targetIndex.toString());
       setUpButtons();
