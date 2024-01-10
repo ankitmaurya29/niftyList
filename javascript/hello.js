@@ -4,16 +4,18 @@ window.onload = function () {
     sessionStorage.setItem("index", (-1).toString());
     console.log("restting values");
   }
+
+  setUpList();
+  setUpButtons();
+
   const previousBtn = document.getElementById("previousBtn");
   previousBtn.addEventListener("click", (event) => {
-    navigateAndUpdate(event, false);
+    setTimeout(() => navigateAndUpdate(event, false), 100);
   });
   const nextBtn = document.getElementById("nextBtn");
   nextBtn.addEventListener("click", (event) => {
-    navigateAndUpdate(event, true);
+    setTimeout(() => navigateAndUpdate(event, true), 100);
   });
-  setUpList();
-  setUpButtons();
 };
 
 function setUpButtons() {
@@ -23,7 +25,6 @@ function setUpButtons() {
   if (data[storedIndex - 1]) {
     const company = data[storedIndex - 1];
     previousBtn.href = company.url;
-    previousBtn.target = "_top";
     backCompanynameDiv.textContent = company.name;
   } else {
     previousBtn.removeAttribute("href");
