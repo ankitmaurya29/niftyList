@@ -5,9 +5,6 @@ window.onload = function () {
     console.log("restting values");
   }
 
-  setUpList();
-  setUpButtons();
-
   const previousBtn = document.getElementById("previousBtn");
   previousBtn.addEventListener("click", (event) => {
     setTimeout(() => navigateAndUpdate(event, false), 100);
@@ -16,6 +13,9 @@ window.onload = function () {
   nextBtn.addEventListener("click", (event) => {
     setTimeout(() => navigateAndUpdate(event, true), 100);
   });
+
+  setUpList();
+  setUpButtons();
 };
 
 function setUpButtons() {
