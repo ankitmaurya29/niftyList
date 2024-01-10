@@ -7,11 +7,11 @@ window.onload = function () {
 
   const previousBtn = document.getElementById("previousBtn");
   previousBtn.addEventListener("click", (event) => {
-    setTimeout(() => navigateAndUpdate(event, false), 100);
+    setTimeout(() => navigateAndUpdate(event, false), 0);
   });
   const nextBtn = document.getElementById("nextBtn");
   nextBtn.addEventListener("click", (event) => {
-    setTimeout(() => navigateAndUpdate(event, true), 100);
+    setTimeout(() => navigateAndUpdate(event, true), 0);
   });
 
   setUpList();
